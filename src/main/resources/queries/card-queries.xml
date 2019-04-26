@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <entry key="getCardByQuery">
+        <![CDATA[
+                SELECT
+                	idcards AS idcards,
+                	cardsnumber AS cardsnumber,
+                	cvv AS cvv,
+                	balance AS balance,
+                	cardholder AS cardholder,
+                	phone AS phone
+                FROM cards
+                WHERE cardsnumber = :cardsnumber AND cvv = :cvv AND cardholder = :cardholder
+        	]]>
+    </entry>
+    <entry key="paymentOff">
+        <![CDATA[
+                UPDATE cards SET
+                	balance = :balance
+                WHERE
+                	idcards = :idcards
+        	]]>
+    </entry>
+</properties>

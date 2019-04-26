@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <entry key="getClientOrderNumber">
+        <![CDATA[
+                SELECT
+					IFNULL(max(ordernumber),0) AS ordernumber
+                FROM orders
+                WHERE client = :client
+        	]]>
+    </entry>
+    <entry key="writeOrder">
+        <![CDATA[
+                INSERT INTO
+                    orders (client, product, ordernumber, iscash, delivery, ispaid, count)
+                    values(:client, :product, :ordernumber, :iscash, :delivery, :ispaid, :count)
+        	]]>
+    </entry>
+
+    <entry key="changeDeliveryStat">
+        <![CDATA[
+                UPDATE orders SET
+                	delivery = true
+                WHERE
+                	client = :client AND ordernumber = :ordernumber
+        	]]>
+    </entry>
+
+</properties>
